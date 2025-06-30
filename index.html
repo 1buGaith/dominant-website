@@ -1,11 +1,393 @@
+I will integrate the provided CSS code directly into your `index.html` file. This means the styling will be embedded within the HTML document itself, rather than being in a separate `style.css` file.
+
+Here is the combined `index.html` file with the CSS embedded:
+
+```html
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PlugBuy | الرئيسية</title>
-    <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap');
+
+        :root {
+            --bg-dark: #120025; /* بنفسجي داكن جداً للخلفيات الأعمق مثل أيقونة البلوقن وعلامات الـ tags */
+            --bg-medium: #20003a; /* بنفسجي داكن متوسط لخلفية الجسم الرئيسية (إذا لم تكن متدرجة) */
+            --bg-light: #300055; /* بنفسجي أفتح قليلاً لبطاقات البلوقنات والأزرار الثانوية */
+            --text-primary: #ffffff;
+            --text-secondary: #dcdcdc; /* لون فاتح للنصوص الثانوية */
+            --accent-blue: #d4008a; /* لون فوشيا/بنفسجي زاهي للأزرار الأساسية (تماشياً مع الخلفية) */
+            --border-color: #450070; /* بنفسجي متوسط للحدود */
+
+            /* ألوان جديدة لتأثير الزجاج */
+            --glass-bg-color: rgba(48, 0, 85, 0.3); /* بنفسجي مع شفافية 30% */
+            --glass-border-color: rgba(69, 0, 112, 0.5); /* بنفسجي أغمق قليلاً مع شفافية 50% */
+            --glass-shadow-color: rgba(0, 0, 0, 0.2); /* ظل خفيف */
+        }
+
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background: linear-gradient(to bottom right, #1a002a, #d4008a); /* الخلفية المتدرجة */
+            color: var(--text-primary);
+            margin: 0;
+            padding-top: 70px;
+            
+            /* تأثير انتقال الصفحة (Fade-in) - أضفناه هنا */
+            opacity: 0; /* تبدأ الصفحة مخفية */
+            animation: fadeInPage 0.8s forwards ease-out; /* تطبيق الانيميشن */
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px 0;
+        }
+
+        /* Navbar */
+        .navbar {
+            background-color: var(--bg-dark);
+            border-bottom: 1px solid var(--border-color);
+            padding: 0 20px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+        }
+
+        .navbar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--text-primary);
+            text-decoration: none;
+            display: flex; /* لتوسيط الصورة والنص */
+            align-items: center;
+        }
+        .logo img {
+            margin-inline-end: 10px; /* مسافة بين الصورة والنص */
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            align-items: center;
+            gap: 25px;
+            margin: 0;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 16px;
+            padding: 5px 10px;
+            border-radius: 5px;
+            transition: all 0.2s ease-in-out;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--text-primary);
+            background-color: var(--bg-light);
+        }
+
+        /* Buttons */
+        .btn {
+            padding: 10px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 500;
+            cursor: pointer;
+            transition: opacity 0.2s;
+        }
+
+        .btn-primary {
+            background-color: var(--accent-blue);
+            color: var(--text-primary);
+        }
+        .btn-secondary {
+            background-color: var(--bg-light);
+            color: var(--text-primary);
+        }
+        .btn:hover {
+            opacity: 0.8;
+        }
+
+        /* Hero Section */
+        .hero {
+            background-color: var(--bg-dark);
+            text-align: center;
+            padding: 80px 20px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 15px;
+        }
+
+        .hero p {
+            font-size: 18px;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto 30px;
+        }
+
+        /* Main Content & Plugin Cards */
+        #featured-plugins h2, .page-title {
+            text-align: center;
+            font-size: 32px;
+            margin-bottom: 10px;
+            padding-top: 40px;
+        }
+        .page-subtitle {
+            text-align: center;
+            color: var(--text-secondary);
+            margin-bottom: 40px;
+        }
+
+        .plugins-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+            padding: 20px 0;
+        }
+
+        .plugin-card {
+            background-color: var(--glass-bg-color); /* خلفية شفافة */
+            border: 1px solid var(--glass-border-color); /* حدود شفافة */
+            border-radius: 8px;
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            
+            /* تأثير الزجاج المتجمد */
+            backdrop-filter: blur(10px); /* درجة التمويه */
+            -webkit-backdrop-filter: blur(10px); /* لدعم المتصفحات القديمة */
+            box-shadow: 0 5px 15px var(--glass-shadow-color); /* ظل خفيف لإضافة عمق */
+        }
+
+        .plugin-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px var(--glass-shadow-color);
+        }
+
+        .plugin-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            margin-bottom: 20px;
+            background-color: rgba(255, 255, 255, 0.1); /* خلفية بيضاء شفافة للأيقونة */
+            backdrop-filter: blur(5px); /* تأثير تمويه خفيف للأيقونة نفسها */
+            -webkit-backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.2); /* حدود شفافة للأيقونة */
+        }
+
+        .plugin-card h3 {
+            margin: 0 0 10px;
+        }
+
+        .plugin-description {
+            color: var(--text-secondary);
+            font-size: 15px;
+            line-height: 1.6;
+            flex-grow: 1; /* تجعل الوصف يأخذ المساحة المتاحة */
+            margin-bottom: 20px;
+        }
+
+        .plugin-tags {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .plugin-tags span {
+            background-color: var(--bg-dark);
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 12px;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 30px;
+            margin-top: 40px;
+            background-color: var(--bg-dark);
+            color: var(--text-secondary);
+            border-top: 1px solid var(--border-color);
+        }
+
+        /* تنسيقات النافذة المنبثقة (Modal) */
+        .modal {
+            display: none; /* مخفي افتراضياً */
+            position: fixed; /* يبقى في مكانه حتى عند التمرير */
+            z-index: 2000; /* يجب أن يكون فوق كل شيء */
+            left: 0;
+            top: 0;
+            width: 100%; /* عرض كامل */
+            height: 100%; /* ارتفاع كامل */
+            overflow: auto; /* تمكين التمرير إذا كان المحتوى كبيراً */
+            background-color: rgba(0, 0, 0, 0.7); /* خلفية سوداء شبه شفافة */
+            
+            /* هذه الخصائص سيتم تطبيقها عندما يكون display: flex; بواسطة JavaScript */
+            justify-content: center; /* توسيط أفقي */
+            align-items: center; /* توسيط عمودي */
+            padding: 20px; /* بعض المسافة من الحواف */
+        }
+
+        .modal-content {
+            background-color: var(--glass-bg-color); /* خلفية زجاجية */
+            margin: auto; /* لضمان التوسيط في بعض الحالات */
+            padding: 30px;
+            border: 1px solid var(--glass-border-color);
+            border-radius: 12px;
+            width: 90%;
+            max-width: 800px; /* أقصى عرض للنافذة */
+            position: relative; /* لتموضع زر الإغلاق */
+            box-shadow: 0 10px 30px var(--glass-shadow-color);
+            backdrop-filter: blur(15px); /* تأثير الزجاج المتجمد أقوى قليلاً */
+            -webkit-backdrop-filter: blur(15px);
+            animation: fadeInModal 0.3s ease-out; /* تأثير ظهور سلس للمودال نفسه */
+            max-height: 90vh; /* تحديد أقصى ارتفاع للمحتوى ليكون قابلاً للتمرير */
+            overflow-y: auto; /* تمكين التمرير الداخلي للمحتوى */
+        }
+
+        /* زر الإغلاق (X) */
+        .close-button {
+            color: var(--text-secondary);
+            font-size: 35px;
+            font-weight: bold;
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            cursor: pointer;
+            transition: color 0.2s ease;
+        }
+
+        .close-button:hover,
+        .close-button:focus {
+            color: var(--text-primary);
+        }
+
+        /* تنسيقات المحتوى داخل الـ Modal */
+        .modal-content h2,
+        .modal-content h3 {
+            color: var(--text-primary);
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .modal-content p,
+        .modal-content ul li {
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        .modal-content ul {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 20px;
+        }
+
+        .modal-content ul li {
+            display: flex;
+            align-items: flex-start; /* لتكون الأيقونة محاذية لأول سطر من النص */
+            margin-bottom: 10px;
+            font-size: 17px;
+        }
+
+        .modal-content ul li i {
+            color: var(--accent-blue);
+            margin-inline-end: 10px;
+            font-size: 24px;
+            flex-shrink: 0; /* لمنع الأيقونة من الانكماش */
+        }
+
+        .modal-content .plugin-screenshots {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* أصغر قليلاً داخل الـ modal */
+            gap: 15px;
+            margin-top: 25px;
+            justify-content: center;
+        }
+
+        .modal-content .screenshot-img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            border: 1px solid var(--glass-border-color);
+            transition: transform 0.2s ease;
+        }
+
+        .modal-content .screenshot-img:hover {
+            transform: scale(1.02);
+        }
+
+        /* Animations */
+        @keyframes fadeInPage {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes fadeInModal {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        /* Media Queries for responsiveness */
+        @media (max-width: 768px) {
+            .navbar .container {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .nav-links {
+                flex-direction: column;
+                align-items: flex-start;
+                width: 100%;
+                gap: 10px;
+                margin-top: 10px;
+            }
+            .nav-links li {
+                width: 100%;
+            }
+            .nav-links a {
+                display: block;
+                width: 100%;
+                text-align: center;
+            }
+            .hero h1 {
+                font-size: 36px;
+            }
+            .hero p {
+                font-size: 16px;
+            }
+            .plugins-grid {
+                grid-template-columns: 1fr;
+            }
+            .modal-content {
+                width: 95%;
+                padding: 20px;
+            }
+            .modal-content h2 {
+                font-size: 24px;
+            }
+            .modal-content ul li {
+                font-size: 15px;
+            }
+        }
+    </style>
 </head>
 <body>
     <nav class="navbar">
@@ -15,46 +397,117 @@
                 PlugBuy
             </a>
             <ul class="nav-links">
-                <li><a href="index.html" class="active">الرئيسية</a></li>
-                <li><a href="plugins.html">البلوقنات</a></li>
+                <li><a href="#" id="homeNavLink" class="active">الرئيسية</a></li>
+                <li><a href="#" id="pluginsNavLink">البلوقنات</a></li>
                 <li><a href="#" class="btn btn-primary">أضف بوتك</a></li>
             </ul>
         </div>
     </nav>
 
-    <header class="hero">
-        <div class="container">
-            <img src="images/plugbuychat.jpg" alt="PlugBuy Plugin" style="max-width: 80%; height: auto; margin-bottom: 30px; border-radius: 10px;">
-            <h1>مركزك الأول للبلوقنات القوية</h1>
-            <p>اكتشف، حمّل، وادعم بوتاتك ببلوقنات فريدة من تصميمنا.</p>
-            
-            <div style="display: flex; justify-content: center; gap: 20px; margin-top: 30px;">
-                <a href="https://discord.gg/FQakYQnHMq" class="btn btn-primary" target="_blank">انضم إلى ديسكورد</a>
-                <button type="button" class="btn btn-secondary" onclick="openDownloadMessageModal()">تحميل البلوقن</button>
-            </div>
-        </div>
-    </header>
-
-    <main class="container" id="featured-plugins">
-        <h2>بلوقنات مميزة</h2>
-        <div class="plugins-grid">
-            <div class="plugin-card">
-                <img src="images/Whisk_0db643ece7.jpg" alt="بلوقن الايكيولازر" class="plugin-icon">
-                <h3>بلوقن الايكيولازر | PlugBuy</h3>
-                <p class="plugin-description">بلوقن كامل متكامل مخصص للدسكورد للمايك</p>
-                <div class="plugin-tags">
-                    <span>مضخم</span>
-                    <span>عوازل</span>
-                    <span>ثغرات</span>
+    <div id="homePageContent">
+        <header class="hero">
+            <div class="container">
+                <img src="images/plugbuychat.jpg" alt="PlugBuy Plugin" style="max-width: 80%; height: auto; margin-bottom: 30px; border-radius: 10px;">
+                <h1>مركزك الأول للبلوقنات القوية</h1>
+                <p>اكتشف، حمّل، وادعم بوتاتك ببلوقنات فريدة من تصميمنا.</p>
+                
+                <div style="display: flex; justify-content: center; gap: 20px; margin-top: 30px;">
+                    <a href="https://discord.gg/FQakYQnHMq" class="btn btn-primary" target="_blank">انضم إلى ديسكورد</a>
+                    <button type="button" class="btn btn-secondary" onclick="openDownloadMessageModal()">تحميل البلوقن</button>
                 </div>
-                <a href="plugins.html" class="btn btn-secondary">عرض التفاصيل</a>
             </div>
-        </div>
-    </main>
+        </header>
 
-    <footer class="footer">
+        <main class="container" id="featured-plugins">
+            <h2>بلوقنات مميزة</h2>
+            <div class="plugins-grid">
+                <div class="plugin-card">
+                    <img src="images/Whisk_0db643ece7.jpg" alt="بلوقن الايكيولازر" class="plugin-icon">
+                    <h3>بلوقن الايكيولازر | PlugBuy</h3>
+                    <p class="plugin-description">بلوقن كامل متكامل مخصص للدسكورد للمايك</p>
+                    <div class="plugin-tags">
+                        <span>مضخم</span>
+                        <span>عوازل</span>
+                        <span>ثغرات</span>
+                    </div>
+                    <a href="#" class="btn btn-secondary" id="openDetailsModalFromHome">عرض التفاصيل</a>
+                </div>
+            </div>
+        </main>
+    </div> <div id="pluginsPageContent" style="display: none;">
+        <main class="container" id="all-plugins">
+            <h1 class="page-title">جميع البلوقنات</h1>
+            <p class="page-subtitle">تصفح مجموعتنا الكاملة من البلوقنات المصممة لتعزيز سيرفرك.</p>
+
+            <div class="plugins-grid">
+                <div class="plugin-card">
+                    <img src="images/Whisk_0db643ece7.jpg" alt="بلوقن الايكيولازر" class="plugin-icon">
+                    <h3>بلوقن الايكيولازر | PlugBuy</h3>
+                    <p class="plugin-description">بلوقن كامل متكامل مخصص للدسكورد للمايك</p>
+                    <div class="plugin-tags">
+                        <span>مضخم</span>
+                        <span>عوازل</span>
+                        <span>ثغرات</span>
+                    </div>
+                    <a href="#" class="btn btn-secondary" id="openDetailsModalFromPlugins">عرض التفاصيل</a>
+                </div>
+            </div>
+        </main>
+    </div> <footer class="footer">
         <p>&copy; 2025 PlugBuy. جميع الحقوق محفوظة.</p>
     </footer>
+
+    <div id="pluginDetailsModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" id="closePluginDetailsModalBtn">&times;</span>
+            <h2 class="page-title">تفاصيل بلوقن الايكيولازر | PlugBuy (1MicSuiteUnified)</h2>
+            <div class="plugin-detail-content">
+                <div class="detail-text">
+                    <h3>نظرة عامة</h3>
+                    <p>يقدم بلوقن <strong>الايكيولازر | PlugBuy (1MicSuiteUnified)</strong> تجربة صوتية متكاملة ومحسّنة لمستخدمي Discord. تم تصميم هذا البلوقن ليوفر لك تحكماً دقيقاً في جودة صوت الميكروفون الخاص بك، بالإضافة إلى ميزات فريدة لتعزيز وضوح الصوت والتحكم المريح.</p>
+                    <p>سواء كنت لاعباً، أو منشئ محتوى، أو ببساطة تتحدث مع أصدقائك، يضمن هذا البلوقن وصول صوتك بأعلى جودة ممكنة.</p>
+
+                    <h3>المميزات الرئيسية:</h3>
+                    <ul>
+                        <li><i class="material-icons">mic</i> <strong>معزز الميكروفون (Mic Booster):</strong> ارفع مستوى صوت الميكروفون الخاص بك لضمان سماعك بوضوح، حتى لو كان صوتك منخفضاً.</li>
+                        <li><i class="material-icons">multitrack_audio</i> <strong>تحكم متقدم بالصوت الاستريو:</strong>
+                            <ul>
+                                <li><i class="material-icons">tune</i> **معدل البت القابل للتخصيص:** اختر معدل البت المفضل لصوت الميكروفون (يدعم حتى 512kbps) لجودة صوت فائقة.</li>
+                                <li><i class="material-icons">speaker</i> **تحويل القنوات:** اختر بين قنوات الصوت الأحادية (Mono) أو الاستريو (Stereo) لتجربة صوتية غنية ومحيطية.</li>
+                            </ul>
+                        </li>
+                        <li><i class="material-icons">visibility_off</i> <strong>وضع الكتم الوهمي (Fake Mute):</strong> ميزة فريدة تسمح لك بالظهور بمظهر "المكتوم" في Discord بينما يستمر صوتك بالانتقال للآخرين (للمتعة أو المواقف الخاصة!). </li>
+                        <li><i class="material-icons">drag_indicator</i> <strong>عناصر تحكم متحركة (Draggable Controls):</strong> لوحة إعدادات سهلة الاستخدام يمكن سحبها وإعادة تموضعها في واجهة Discord لتناسب تفضيلاتك.</li>
+                        <li><i class="material-icons">cloud_download</i> <strong>حفظ الإعدادات:</strong> يتم حفظ إعداداتك المفضلة تلقائياً لتعود إليها في أي وقت.</li>
+                    </ul>
+
+                    <h3>متطلبات التشغيل والتثبيت:</h3>
+                    <ol>
+                        <li><i class="material-icons">desktop_windows</i> <strong>نظام التشغيل:</strong> يتطلب نظام تشغيل Windows (غير مدعوم على macOS أو Linux).</li>
+                        <li><i class="material-icons">build</i> <strong>برنامج الايكيولايزر (Equalizer APO):</strong> يجب تثبيت برنامج <a href="https://sourceforge.net/projects/equalizerapo/" target="_blank" style="color: var(--accent-blue); text-decoration: underline;">Equalizer APO</a> بشكل مسبق على جهاز الكمبيوتر الخاص بك.</li>
+                        <li><i class="material-icons">folder_open</i> <strong>مسار التثبيت:</strong> تأكد من أن برنامج Equalizer APO مثبت في المسار الافتراضي `C:\Program Files\EqualizerAPO\` (أو مجلد C: الرئيسي).</li>
+                        <li><i class="material-icons">cloud_download</i> <strong>تثبيت BetterDiscord:</strong> يجب أن يكون برنامج <a href="https://betterdiscord.app/" target="_blank" style="color: var(--accent-blue); text-decoration: underline;">BetterDiscord</a> مثبتاً في تطبيق Discord الخاص بك.</li>
+                        <li><i class="material-icons">code</i> <strong>تثبيت البلوقن:</strong> بعد تثبيت المتطلبات أعلاه، قم بتحميل ملف `1MicSuiteUnified.plugin.js` وضعه في مجلد "Plugins" الخاص بـ BetterDiscord (عادة ما يكون في `AppData/Roaming/BetterDiscord/plugins`).</li>
+                        <li><i class="material-icons">settings</i> <strong>الإعدادات الأولية:</strong> قد تحتاج إلى إعادة تشغيل Discord بعد تثبيت البلوقن وتفعيل Equalizer APO من إعدادات الصوت في Windows.</li>
+                    </ol>
+                    <p style="font-size: 14px; color: var(--text-secondary); margin-top: 15px;">**ملاحظة هامة:** يرجى التأكد من اتباع خطوات التثبيت بدقة لضمان عمل البلوقن بكفاءة.</p>
+
+                    <h3>صور توضيحية:</h3>
+                    <div class="plugin-screenshots">
+                        <img src="images/moderation_screenshot_1.jpg" alt="صورة شرح 1" class="screenshot-img">
+                        <img src="images/moderation_screenshot_2.jpg" alt="صورة شرح 2" class="screenshot-img">
+                        <img src="images/moderation_screenshot_3.jpg" alt="صورة شرح 3" class="screenshot-img">
+                    </div>
+                    
+                    <h3>روابط التحميل والدعم:</h3>
+                    <div style="display: flex; gap: 20px; margin-top: 20px; justify-content: center;">
+                        <button type="button" class="btn btn-primary" onclick="openDownloadMessageModal()">تحميل بلوقن 1MicSuiteUnified</button>
+                        <a href="https://discord.gg/FQakYQnHMq" class="btn btn-secondary" target="_blank">دعم فني عبر ديسكورد</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <div id="downloadMessageModal" class="modal">
         <div class="modal-content download-message-modal-content">
@@ -70,27 +523,116 @@
     </div>
 
     <script>
-        // دالة لفتح نافذة الرسالة
+        // Get references to page content sections
+        const homePageContent = document.getElementById('homePageContent');
+        const pluginsPageContent = document.getElementById('pluginsPageContent');
+
+        // Get references to navigation links
+        const homeNavLink = document.getElementById('homeNavLink');
+        const pluginsNavLink = document.getElementById('pluginsNavLink');
+
+        // Get references to modals
+        const pluginDetailsModal = document.getElementById('pluginDetailsModal');
+        const downloadMessageModal = document.getElementById('downloadMessageModal');
+
+        // Get references to buttons that open modals
+        const openDetailsModalFromHome = document.getElementById('openDetailsModalFromHome');
+        const openDetailsModalFromPlugins = document.getElementById('openDetailsModalFromPlugins');
+        const closePluginDetailsModalBtn = document.getElementById('closePluginDetailsModalBtn');
+
+        // Function to show a specific page and hide others
+        function showPage(pageToShow) {
+            homePageContent.style.display = 'none';
+            pluginsPageContent.style.display = 'none';
+
+            if (pageToShow === 'home') {
+                homePageContent.style.display = 'block';
+                homeNavLink.classList.add('active');
+                pluginsNavLink.classList.remove('active');
+                document.title = 'PlugBuy | الرئيسية';
+            } else if (pageToShow === 'plugins') {
+                pluginsPageContent.style.display = 'block';
+                pluginsNavLink.classList.add('active');
+                homeNavLink.classList.remove('active');
+                document.title = 'PlugBuy | البلوقنات';
+            }
+            document.body.style.overflow = 'auto'; // Ensure scrolling is enabled when a page is shown
+        }
+
+        // Event listeners for navigation links
+        homeNavLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            showPage('home');
+        });
+
+        pluginsNavLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            showPage('plugins');
+        });
+
+        // Function to open the download message modal
         function openDownloadMessageModal() {
-            var modal = document.getElementById('downloadMessageModal');
-            modal.style.display = 'flex';
-            document.body.style.overflow = 'hidden'; // منع التمرير في الخلفية
+            downloadMessageModal.style.display = 'flex';
+            document.body.style.overflow = 'hidden'; // Prevent scrolling in the background
         }
 
-        // دالة لإغلاق نافذة الرسالة
+        // Function to close the download message modal
         function closeDownloadMessageModal() {
-            var modal = document.getElementById('downloadMessageModal');
-            modal.style.display = 'none';
-            document.body.style.overflow = 'auto'; // السماح بالتمرير في الخلفية مرة أخرى
+            downloadMessageModal.style.display = 'none';
+            // Only re-enable scrolling if no other modal is open
+            if (pluginDetailsModal.style.display !== 'flex') {
+                document.body.style.overflow = 'auto';
+            }
         }
 
-        // إغلاق النافذة عند النقر خارجها
+        // Function to open the plugin details modal
+        function openPluginDetailsModal() {
+            pluginDetailsModal.style.display = 'flex';
+            document.body.style.overflow = 'hidden'; // Prevent scrolling in the background
+        }
+
+        // Function to close the plugin details modal
+        function closePluginDetailsModal() {
+            pluginDetailsModal.style.display = 'none';
+            // Only re-enable scrolling if no other modal is open
+            if (downloadMessageModal.style.display !== 'flex') {
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        // Event listeners for opening plugin details modal
+        if (openDetailsModalFromHome) {
+            openDetailsModalFromHome.addEventListener('click', (e) => {
+                e.preventDefault();
+                openPluginDetailsModal();
+            });
+        }
+
+        if (openDetailsModalFromPlugins) {
+            openDetailsModalFromPlugins.addEventListener('click', (e) => {
+                e.preventDefault();
+                openPluginDetailsModal();
+            });
+        }
+
+        // Event listener for closing plugin details modal
+        closePluginDetailsModalBtn.addEventListener('click', closePluginDetailsModal);
+
+        // Close modals when clicking outside of them
         window.onclick = function(event) {
-            var modal = document.getElementById('downloadMessageModal');
-            if (event.target == modal) {
+            if (event.target === pluginDetailsModal) {
+                closePluginDetailsModal();
+            }
+            if (event.target === downloadMessageModal) {
                 closeDownloadMessageModal();
             }
         }
+
+        // Initialize to show the home page on load
+        document.addEventListener('DOMContentLoaded', () => {
+            showPage('home');
+        });
     </script>
 </body>
 </html>
+```
