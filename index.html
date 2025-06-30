@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PlugBuy | الرئيسية</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <img src="images/Whisk_0db643ece7.jpg" alt="PlugBuy Logo" style="height: 30px; vertical-align: middle; margin-inline-end: 10px;">
+                PlugBuy
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html" class="active">الرئيسية</a></li>
+                <li><a href="plugins.html">البلوقنات</a></li>
+                <li><a href="#" class="btn btn-primary">أضف بوتك</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <div class="container">
+            <img src="images/plugbuychat.jpg" alt="PlugBuy Plugin" style="max-width: 80%; height: auto; margin-bottom: 30px; border-radius: 10px;">
+            <h1>مركزك الأول للبلوقنات القوية</h1>
+            <p>اكتشف، حمّل، وادعم بوتاتك ببلوقنات فريدة من تصميمنا.</p>
+            
+            <div style="display: flex; justify-content: center; gap: 20px; margin-top: 30px;">
+                <a href="https://discord.gg/FQakYQnHMq" class="btn btn-primary" target="_blank">انضم إلى ديسكورد</a>
+                <button type="button" class="btn btn-secondary" onclick="openDownloadMessageModal()">تحميل البلوقن</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="container" id="featured-plugins">
+        <h2>بلوقنات مميزة</h2>
+        <div class="plugins-grid">
+            <div class="plugin-card">
+                <img src="images/Whisk_0db643ece7.jpg" alt="بلوقن الايكيولازر" class="plugin-icon">
+                <h3>بلوقن الايكيولازر | PlugBuy</h3>
+                <p class="plugin-description">بلوقن كامل متكامل مخصص للدسكورد للمايك</p>
+                <div class="plugin-tags">
+                    <span>مضخم</span>
+                    <span>عوازل</span>
+                    <span>ثغرات</span>
+                </div>
+                <a href="plugins.html" class="btn btn-secondary">عرض التفاصيل</a>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2025 PlugBuy. جميع الحقوق محفوظة.</p>
+    </footer>
+
+    <div id="downloadMessageModal" class="modal">
+        <div class="modal-content download-message-modal-content">
+            <span class="close-button" onclick="closeDownloadMessageModal()">&times;</span>
+            <p style="text-align: center; font-size: 18px; margin-bottom: 20px;">
+                <i class="material-icons" style="font-size: 48px; color: var(--accent-blue); margin-bottom: 15px; display: block;">info</i>
+                لتحميل البلوقن، يرجى التواصل مع صاحب البلوقن <strong style="color: var(--accent-blue);">7mo7</strong>.
+            </p>
+            <div style="text-align: center;">
+                <a href="https://discord.gg/FQakYQnHMq" class="btn btn-primary" target="_blank">انضم إلى ديسكورد</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // دالة لفتح نافذة الرسالة
+        function openDownloadMessageModal() {
+            var modal = document.getElementById('downloadMessageModal');
+            modal.style.display = 'flex';
+            document.body.style.overflow = 'hidden'; // منع التمرير في الخلفية
+        }
+
+        // دالة لإغلاق نافذة الرسالة
+        function closeDownloadMessageModal() {
+            var modal = document.getElementById('downloadMessageModal');
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto'; // السماح بالتمرير في الخلفية مرة أخرى
+        }
+
+        // إغلاق النافذة عند النقر خارجها
+        window.onclick = function(event) {
+            var modal = document.getElementById('downloadMessageModal');
+            if (event.target == modal) {
+                closeDownloadMessageModal();
+            }
+        }
+    </script>
+</body>
+</html>
